@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Picture Zoom Game!</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<style>
+		* {
+		  box-sizing: border-box;
+		}
+		.container {
+		  max-width: 200px;
+		  border: 1px solid black;
+		  overflow: hidden;
+		}
+		img {
+		  margin: 5%;
+		  max-width: 90%;
+		  transform: scale(15,15);
+		}
+		.slowTransition {
+			transition: 2.5s;
+			transform: scale(1,1);
+		}
+		.fastTransition {
+			transition: 0.1s;
+			transform: scale(15,15);
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<img id="picture" src="http://unsplash.it/250/251/?random" alt="accesibleeeee">
+	</div>	
+	<label for="option1">sun</label>
+	<input type="radio" name="questionOne" id="option1" value="sun">
+	<label for="option2">banana</label>
+	<input type="radio" name="questionOne" id="option2" value="banana">
+	<label for="option3">lemon</label>
+	<input type="radio" name="questionOne" id="option3" value="lemon">
+	<label for="option4">light</label>
+	<input type="radio" name="questionOne" id="option4" value="light">
+
+	<button id="submit" type="button" disabled="disabled">submit</button>
+	<button id="cont" type="button">Continue</button>
+	<h1></h1>
+	<script>
+		var picture1 = {
+			correctAnswer: 'banana',
+			picturePath: 'http://unsplash.it/252/252/?random'
+		}
+		var picture2 = {	//picture object to store everything for picture 1
+			questionPool: ['recycling bin','lampshade','tupperware','sky'], //contains multiple choice options
+			correctAnswer: 'tupperware', //contains the correct option
+			picturePath: 'http://unsplash.it/254/254/?random' //contains the path to our picture
+		}
+		var picture3 = {	//picture object to store everything for picture 1
+			questionPool: ['strawberry','balloon','apple','hackeryou cup'], //contains multiple choice options
+			correctAnswer: 'hackeryou cup', //contains the correct option
+			picturePath: 'http://unsplash.it/251/253/?random' //contains the path to our picture
+		}
+
+		myArray = [picture1, picture2, picture3];
+
+		var index = 0;
+
+
+		$('input').on('click', function(){
+			$('#submit').removeAttr("disabled")
+		})
+
+		$('#submit').on('click', function(){
+			var userChoice = $('input:checked').val();
+			var correctAnswer = myArray[index].correctAnswer;
+			$('img').addClass('slowTransition');
+			$('#submit').attr("disabled", "disabled")
+			setTimeout(myFunction, 2500);
+			$('input').prop('checked', false);
+
+			function myFunction() {
+			$('img').removeClass('slowTransition');
+			if (correctAnswer != userChoice) {
+				$('h1').html('You chose wrong!');
+			} else {
+				$('h1').html('You win!');
+			}
+		}	
+
+		$('#cont').on('click', function() {
+			index += 1;
+			for (var i = 1; i <= 4; i++) {
+				$(`label[for=option${i}]`).html(`${myArray[index].questionPool[i-1]}`);
+				$(`input[id=option${i}]`).val(`${myArray[index].questionPool[i-1]}`);
+				$('#picture').attr("src", `${myArray[index].picturePath}`)
+			}
+		})
+		// if (cont == 'yes') {
+			// index += 1;
+			// for (var i = 1; i <= 4; i++) {
+			// 	$(`label[for=option${i}]`).html(`${myArray[index].questionPool[i-1]}`);
+			// 	$(`input[id=option${i}]`).val(`${myArray[index].questionPool[i-1]}`);
+			// 	$('#picture').attr("src", `${myArray[index].picturePath}`)
+			// }
+		// }
+		})	
+	</script>
+</body>
+</html>
