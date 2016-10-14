@@ -62,12 +62,12 @@
 		}
 		
 		//This array holds all our picture objects (this is done for indexing purposes)
-		pictureArray = [picture1, picture2, picture3];
+		var pictureArray = [picture1, picture2, picture3];
 
 		//This counter lets us iterate through pictureArray
 		var counter = 0;
 
-		//When any inputs are clicked, enable the submit button
+		//When any input elements are clicked, enable the submit button
 		$('input').on('click', function(){
 			$('#submit').removeAttr("disabled")
 		})
