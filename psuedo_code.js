@@ -13,15 +13,15 @@ Goal:
 
 
 Possible Additions:
--scoreboard
--reduce score based on time taken to answer
--set timer, goal is to get score of 100 in the shortest amount of time
+-scoreboard****
+-reduce score based on time taken to answer*****
+-set timer, goal is to get score of 100 in the shortest amount of time***
 */
 
 
 /*
 Multiple Choice:
--radio buttons, with four options
+-radio buttons, with four options****
 
 Submit Button:
 -<button> or <input type="submit">
