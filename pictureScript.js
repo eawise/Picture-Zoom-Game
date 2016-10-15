@@ -48,7 +48,7 @@ $(function(){
 		$('input').prop('checked', false);
 		
 		//Run validateFunction after 2.5 seconds
-		setTimeout(validateFunction, 1000);
+		setTimeout(validateFunction, 5500);
 
 		//this function reverts our zoom and shows us if the user is right or wrong
 		function validateFunction() {
